@@ -1,0 +1,69 @@
+users = []
+
+while True:
+    print("\n=== User Management System ===")
+    print("1. Show Users")
+    print("2. Add User")
+    print("3. Update User")
+    print("4. Delete User")
+    print("5. Exit")
+
+    choice = input("Enter your choice (1-5): ")
+
+    
+    if choice == "1":
+        if len(users) == 0:
+            print("No users found.")
+        else:
+            print("\nUser List:")
+            for i in range(len(users)):
+                print(f"{i + 1}. {users[i]}")
+
+   
+    elif choice == "2":
+        new_user = input("Enter new user name: ")
+        users.append(new_user)
+        print("User added successfully!")
+
+    
+    elif choice == "3":
+        if len(users) == 0:
+            print("No users to update.")
+        else:
+            for i in range(len(users)):
+                print(f"{i + 1}. {users[i]}")
+            try:
+                update_index = int(input("Enter user number to update: ")) - 1
+                if 0 <= update_index < len(users):
+                    new_name = input("Enter new name: ")
+                    users[update_index] = new_name
+                    print("User updated successfully!")
+                else:
+                    print("Invalid number.")
+            except:
+                print("Invalid input.")
+
+  
+    elif choice == "4":
+        if len(users) == 0:
+            print("No users to delete.")
+        else:
+            for i in range(len(users)):
+                print(f"{i + 1}. {users[i]}")
+            try:
+                delete_index = int(input("Enter user number to delete: ")) - 1
+                if 0 <= delete_index < len(users):
+                    removed_user = users.pop(delete_index)
+                    print("User deleted successfully!")
+                else:
+                    print("Invalid number.")
+            except:
+                print("Invalid input.")
+
+   
+    elif choice == "5":
+        print("Exiting program...")
+        break
+
+    else:
+        print("Invalid choice. Please select 1-5.")
