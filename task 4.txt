@@ -1,0 +1,32 @@
+x = 350
+
+print("Find the closest number to", x, "in the list:")
+
+def my_function():
+    a = int(input("Enter the first number: "))
+    b = int(input("Enter the second number: "))
+    c = int(input("Enter the third number: "))
+
+    if a == b == c:
+        print(f"A is {a}, B is {b}, and C is {c}. All numbers are all equal.")
+        return
+
+    # Calculate differences
+    diff_a = abs(x - a)
+    diff_b = abs(x - b)
+    diff_c = abs(x - c)
+
+    # Find closest number
+    if diff_a <= diff_b and diff_a <= diff_c:
+        closest_letter = "A"
+        closest_value = a
+    elif diff_b <= diff_a and diff_b <= diff_c:
+        closest_letter = "B"
+        closest_value = b
+    else:
+        closest_letter = "C"
+        closest_value = c
+
+    print(f"Letter {closest_letter} or {closest_value} is the closest to {x}.")
+
+my_function()
