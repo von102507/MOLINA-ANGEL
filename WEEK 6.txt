@@ -1,0 +1,90 @@
+cart = {}
+
+def add_item():
+    item = input("Enter item name: ")
+    price = float(input("Enter item price: "))
+    quantity = int(input("Enter quantity: "))
+    
+    if item in cart:
+        cart[item]["quantity"] += quantity
+    else:
+        cart[item] = {"price": price, "quantity": quantity}
+    
+    print(item, "added to cart.\n")
+
+
+def remove_item():
+    item = input("Enter item name to remove: ")
+    
+    if item in cart:
+        del cart[item]
+        print(item, "removed from cart.\n")
+    else:
+        print("Item not found in cart.\n")
+
+
+def view_cart():
+    if not cart:
+        print("Your cart is empty.\n")
+        return
+    
+    print("\n--- Your Cart ---")
+    total = 0
+    
+    for item, details in cart.items():
+        price = details["price"]
+        quantity = details["quantity"]
+        subtotal = price * quantity
+        total += subtotal
+        
+        print(f"{item} - Price: {price} | Qty: {quantity} | Subtotal: {subtotal}")
+    
+    print("Total:", total)
+    print()
+
+
+def checkout():
+    if not cart:
+        print("Cart is empty. Nothing to checkout.\n")
+        return
+    
+    total = 0
+    
+    print("\n--- Checkout ---")
+    for item, details in cart.items():
+        subtotal = details["price"] * details["quantity"]
+        total += subtotal
+    
+    print("Total amount to pay:", total)
+    print("Thank you for shopping!\n")
+    
+    cart.clear()
+
+
+def menu():
+    while True:
+        print("=== Shopping Cart Menu ===")
+        print("1. Add Item")
+        print("2. Remove Item")
+        print("3. View Cart")
+        print("4. Checkout")
+        print("5. Exit")
+        
+        choice = input("Enter your choice: ")
+        
+        if choice == "1":
+            add_item()
+        elif choice == "2":
+            remove_item()
+        elif choice == "3":
+            view_cart()
+        elif choice == "4":
+            checkout()
+        elif choice == "5":
+            print("Exiting program...")
+            break
+        else:
+            print("Invalid choice. Try again.\n")
+
+
+menu()
